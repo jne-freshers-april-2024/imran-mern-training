@@ -1,0 +1,16 @@
+{
+  "name": "module04developmentworkflowanddebugging",
+  "version": "1.0.0",
+  "description": "",
+  "main": "15NodeModuleSystem.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon 15NodeModuleSystem.js",
+    "start-server": "nodemon 15NodeModuleSystem.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
