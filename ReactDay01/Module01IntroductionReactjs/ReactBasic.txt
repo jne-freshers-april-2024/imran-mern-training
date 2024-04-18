@@ -1,0 +1,12 @@
+ Javascript libariry for building user interface
+ react inbuild functionalities - react, state management , declarative syntax
+ component based arch , jsx(javascript xml)- html in javascript-inside render();
+ vertual dom 
+
+ // for remote project - codeSanbox  -- browser-based arch
+ npx create-react-app name
+
+ 
+
+
+  
