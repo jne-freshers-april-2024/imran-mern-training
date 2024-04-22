@@ -1,9 +1,8 @@
 const Employee = require('../models/employeeModel');
 const bcrypt = require('bcryptjs');
-
+const CustomeError = require('../utils/CustomError')
 
 const employeeRegisterPage =(req,res,next)=>{
-    // console.log(req.get('Cookie').split('=')[1]);
      res.send(
     `<form class='' action='/employee/addEmployee' method='post'>
      <div class=''>
@@ -27,9 +26,10 @@ const employeeRegisterPage =(req,res,next)=>{
 
 }
 
-
+res.json({
+    'message':"data not fetched...."
+ })
 const employeeloginPage =(req,res,next)=>{
-    // console.log(req.get('Cookie').split('=')[1]);
      res.send(
     `<form class='' action='/employee/validateEmployee' method='post'>
      <div class=''>
@@ -37,7 +37,7 @@ const employeeloginPage =(req,res,next)=>{
       <input type='email' name='email' id='email'></input>
      </div>
      <div class=''>
-     <label for='password'> Password </label>
+    <label for='password'> Password </label>
       <input type='password' name='password' id='password'></input>
      </div>
      <button class='btn' type='submit'>Login</button>
@@ -51,11 +51,9 @@ const addEmployee = (req,res,next)=>{
 
     Employee.findOne({email:u.email})
     .then((employeeData)=>{
-        //console.log("employeeData ",employeeData)
         if(employeeData){
             res.redirect('/employee/register');
         }else{
-            // 12 denotes no of level it can be hashed return promise
          return   bcrypt.hash(u.password,12)
          .then((hashPassword)=>{
             const employee = new Employee({
@@ -69,15 +67,15 @@ const addEmployee = (req,res,next)=>{
             .then((resolve)=>{
                 res.redirect('/employee/login');
             }).catch((reject)=>{
-                   res.json({
-                     "message":"User is not added..."
-                   })
+                const err = new CustomeError("User not added in database",500);
+                next(err);
             })
         }); 
           
         }
     }).catch((err)=>{
-          res.send('error in finding employee')
+        const err = new CustomeError("User is ot found in database",500);
+        next(err);
     })
    
 }
@@ -88,12 +86,10 @@ const validateEmployee = (req,res,next)=>{
      Employee.findOne({email:employee.email})
      .then((e)=>{
               if(!e){
-                console.log("e",e);
                 return res.redirect('/employee/login')
               }
               bcrypt.compare(employee.password,e.password).then((match)=>{
                      if(match){
-                        console.log("password mathches....")
                          req.session.isLoggedIn = true;
                          req.session.employee = e;
                          return req.session.save(err=>{
@@ -104,26 +100,17 @@ const validateEmployee = (req,res,next)=>{
                          res.redirect('/employee/login');
                      
               }).catch((err)=>{
-                console.log("inside catch 9....");
                 return res.redirect('/employee/login');
               })
      }).catch((error)=>{
-        console.log('inside catch...10');
+       
          res.redirect('/employee/login');
      })
 }
 
 const allData = (req,res,next)=>{
-    //  if(req.session.isLoggedIn)
-    //     res.send('Protected routes');
-    //  else{
-    //     console.log('used is not logged in');
-    //     res.redirect('/employee/login')
-    //  }
-
-        res.send('Protected routes');
-       
-    }
+      res.send('Protected routes');
+     }
 
 module.exports ={
      employeeRegisterPage,

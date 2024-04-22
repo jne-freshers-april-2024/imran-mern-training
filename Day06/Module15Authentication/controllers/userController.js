@@ -1,6 +1,6 @@
 const User = require('../models/userModel');
 
-// all users details
+
 const allUsers = (req,res,next)=>{
 
      User.find().then((resolve)=>{
@@ -8,13 +8,12 @@ const allUsers = (req,res,next)=>{
             resolve
          })
      }).catch((reject)=>{
-         res.json({
-            'message':"data not fetched...."
-         })
+        const err = new CustomeError("All use is not found",404);
+        next(err);
      })
 }
 
-// find single user by using id
+
 const findById =(req,res,next)=>{
     const userId = req.params.id;
      User.findById(userId)
@@ -23,13 +22,12 @@ const findById =(req,res,next)=>{
             resolve
          })
      }).catch((reject)=>{
-        res.json({
-            "message":"User is not fetched...."
-        })
+        const err = new CustomeError("use is not found",500);
+        next(err);
      })
 }
 
-// add user
+
 const addUser = (req,res,next)=>{
     const u = req.body;
     const user = new User({
@@ -44,18 +42,17 @@ const addUser = (req,res,next)=>{
             resolve
         })
     }).catch((reject)=>{
-           res.json({
-             "message":"User is not added..."
-           })
+        const err = new CustomeError("use is not added",500);
+        next(err);
     })
 }
 
 
-//update user 
+
 const updateUser = (req,res,next)=>{
      const userId = req.params.id;
      const newUser = req.body;
-     console.log("new user",newUser);
+    
      const user = {
           name :newUser.name,
           address : newUser.address,
@@ -70,14 +67,12 @@ const updateUser = (req,res,next)=>{
 
          })
      }).catch((reject)=>{
-         res.json({
-             "message":"User Not updated.....Error",
-              reject
-         })
+        const err = new CustomeError("use is not updated",500);
+        next(err);
      })
 }
 
-// user Delete by id
+
 
 const deleteUser = (req,res,next)=>{
      const userId = req.params.id;
@@ -88,9 +83,8 @@ const deleteUser = (req,res,next)=>{
             "message":"user deleted successfully"
          })
      }).catch(reject=>{
-             res.json({
-                "message":"user not deleted...."
-             })
+        const err = new CustomeError("use is not deleted",500);
+        next(err);
             
      })
 }

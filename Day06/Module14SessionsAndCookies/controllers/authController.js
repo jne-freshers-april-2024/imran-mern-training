@@ -1,9 +1,9 @@
 const User = require('../models/userModel');
-
+const CustomeError = require('../utils/CustomError')
 const cookieparse = require('cookie-parser');
 
 const loginPage =(req,res,next)=>{
-    // console.log(req.get('Cookie').split('=')[1]);
+   
      res.send(
     `<form class='' action='/api/auth/login/data' method='post'>
      <div class=''>
@@ -21,9 +21,8 @@ const loginPage =(req,res,next)=>{
 
 const loginCheck =  (req,res,next)=>{
      if(req.body.name && req.body.password){
-      
-    const {name , password} =req.body ;
-    console.log(name,password);
+       const {name , password} =req.body ;
+    
      User.findOne({name:name,password:password}).then(resolve=>{
         if(resolve){
             console.log(resolve);
@@ -32,8 +31,8 @@ const loginCheck =  (req,res,next)=>{
             res.send('user is valid');
         }  
       }).catch((reject)=>{
-        res.send('user is not valid');
-    
+          const err = new CustomeError("Login failed",401)
+          next(err);
       });
     
     

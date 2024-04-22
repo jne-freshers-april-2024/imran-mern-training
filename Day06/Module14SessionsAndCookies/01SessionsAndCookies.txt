@@ -21,3 +21,4 @@
 // session stored on server
 // cookies are stroed on client browser
 
+//console.log(name,password);

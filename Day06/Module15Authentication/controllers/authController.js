@@ -1,9 +1,10 @@
 const User = require('../models/userModel');
+const CustomError = require('../utils/CustomError');
 
 
 
 const loginPage =(req,res,next)=>{
-    // console.log(req.get('Cookie').split('=')[1]);
+   
      res.send(
     `<form class='' action='/api/auth/login/data' method='post'>
      <div class=''>
@@ -22,8 +23,8 @@ const loginPage =(req,res,next)=>{
 const loginCheck =  (req,res,next)=>{
      if(req.body.name && req.body.password){
       
-    const {name , password} =req.body ;
-    console.log(name,password);
+     const {name , password} =req.body ;
+   
      User.findOne({name:name,password:password}).then(resolve=>{
         if(resolve){
             console.log(resolve);
@@ -32,7 +33,7 @@ const loginCheck =  (req,res,next)=>{
             res.send('user is valid');
         }  
       }).catch((reject)=>{
-        res.send('user is not valid');
+        const err  = new CustomError("used is not valid",401);
     
       });
     
@@ -41,7 +42,6 @@ const loginCheck =  (req,res,next)=>{
      }
 }
 const postLogin = (req,res,next)=>{
-    // res.redirect('/');
      res.setHeader('set-cookie','loggegIn=true');
      res.send(`<h1>Login post method</h1>`)
 }
@@ -57,7 +57,7 @@ const deleteCookie = (req,res,next)=>{
 }
 
 const deleteSession = (req,res,next)=>{
-    console.log(req.session);
+    
     req.session.destroy((err)=>{
         if(err){
            res.send('error occured at the time of distroy session') 
@@ -68,12 +68,7 @@ const deleteSession = (req,res,next)=>{
    
 }
 const setCookie = (req,res,next)=>{
-    res.cookie('newCookie','seted',{
-        // maxAge :10000,
-        // secure:true,
-        // httpOnly:true,
-        // expire:new Date('26 july 2021')
-    });
+    res.cookie('newCookie','seted');
     res.cookie('cookie1',"userLoggedIn");
     res.send('new cookie is seted');
 }
