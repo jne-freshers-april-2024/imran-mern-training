@@ -1,24 +1,15 @@
 const mongodb = require('mongodb');
 const mongoDBClient = mongodb.MongoClient;
+require('dotenv').config();
 
-// let db1;
 const mongoConnect = (callback)=>{
-    mongoDBClient.connect('mongodb+srv://imran:imran@nodejstraining.6ghesbk.mongodb.net/Nodejs?retryWrites=true&w=majority&appName=NodejsTraining')
+    mongoDBClient.connect(process.env.MONGOODB_URL)
         .then((resolve)=>{
             console.log('Connected successfully.....');
             callback(resolve);
-             //db1 = resolve.db();
-             //callback();
          }).catch((reject)=>{
-             console.log(reject);
-             //throw reject;
+              res.status(500).json({message:`MongoDB Connection failed`});
          });
-};
-
-const getdb=()=>{
-     if(db){
-        return db;
-     }
 };
 
 

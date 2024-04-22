@@ -1,22 +1,14 @@
-const express = require('express');
-
-const app = express();
-
-//const mongoConnect = require('./databaseConnection'); ----------------
-
-
-
+require('dotenv').config()
 const {MongoClient} = require('mongodb');
 
-const url = 'mongodb+srv://imran:imran@nodejstraining.6ghesbk.mongodb.net/?retryWrites=true&w=majority&appName=NodejsTraining';
+const url = process.env.MONGOODB_URL;
 
 const client = new MongoClient(url);
 
 async function  getData() {
      const result  = await client.connect();
-     // INside db we can write databases name
-     let db = result.db('Nodejs');
-     let collection = db.collection('User');
+     let db = result.db(process.env.DATABASENAME);
+     let collection = db.collection(process.env.COLLECTION_NAME);
      let response = await collection.find({}).toArray();
      console.log(response);
 }

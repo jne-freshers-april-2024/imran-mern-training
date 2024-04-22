@@ -1,6 +1,6 @@
 const User = require('../models/userModel');
+const CustomError = require('../utils/CustomError');
 
-// all users details
 const allUsers = (req,res,next)=>{
 
      User.find().then((resolve)=>{
@@ -8,13 +8,12 @@ const allUsers = (req,res,next)=>{
             resolve
          })
      }).catch((reject)=>{
-         res.json({
-            'message':"data not fetched...."
-         })
+         const err = new CustomError("Data is not found",404);
+         next(err);
      })
 }
 
-// find single user by using id
+
 const findById =(req,res,next)=>{
     const userId = req.params.id;
      User.findById(userId)
@@ -23,13 +22,12 @@ const findById =(req,res,next)=>{
             resolve
          })
      }).catch((reject)=>{
-        res.json({
-            "message":"User is not fetched...."
-        })
+        const err = new CustomError("User is not found",404);
+        next(err);
      })
 }
 
-// add user
+
 const addUser = (req,res,next)=>{
     const u = req.body;
     const user = new User({
@@ -44,14 +42,12 @@ const addUser = (req,res,next)=>{
             resolve
         })
     }).catch((reject)=>{
-           res.json({
-             "message":"User is not added..."
-           })
+        const err = new CustomError("User is not created",500);
+        next(err);  
     })
 }
 
 
-//update user 
 const updateUser = (req,res,next)=>{
      const userId = req.params.id;
      const newUser = req.body;
@@ -70,14 +66,11 @@ const updateUser = (req,res,next)=>{
 
          })
      }).catch((reject)=>{
-         res.json({
-             "message":"User Not updated.....Error",
-              reject
-         })
+        const err = new CustomError("User is not Created",500);
+        next(err);
      })
 }
 
-// user Delete by id
 
 const deleteUser = (req,res,next)=>{
      const userId = req.params.id;
@@ -85,12 +78,12 @@ const deleteUser = (req,res,next)=>{
      User.findByIdAndDelete(userId)
      .then((resolve)=>{
          res.json({
+             resolve,
             "message":"user deleted successfully"
          })
      }).catch(reject=>{
-             res.json({
-                "message":"user not deleted...."
-             })
+        const err = new CustomError("User is not deleted",500);
+        next(err);
             
      })
 }

@@ -1,60 +1,37 @@
 const express = require('express');
-
 const app = express();
+require('dotenv').config();
 
 const mongoose = require('mongoose');
+const CustomError = require('./utils/CustomError');
 
-const morgan = require('morgan');
+
 const userRouter = require('./routes/userRoute')
-
 const bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded());
+
 app.use(bodyParser.json());
-app.use(morgan('dev'));
+
 
 app.use('/api/user',userRouter);
 
 
 
 
+app.use(CustomError);
 
-
-mongoose.connect('mongodb+srv://imran:imran@nodejstraining.6ghesbk.mongodb.net/Appjs?retryWrites=true&w=majority&appName=NodejsTraining')
+mongoose.connect(process.env.MONGOODB_URL)
 .then((resolve)=>{
-    console.log("connected successfully.......to MongoDB",resolve);
     app.listen(3000,()=>{
         console.log('Server is running on 3000 port....');
   })}
 ).catch((reject)=>{
-      console.log("reject : ",reject)
+     const err = new CustomError('Database connection failed ',500);
+     next(err);
 })
 
 
-// const db = mongoose.connection;
 
-// db.on((reject)=>{
-//      console.log("error ",reject);
-// })
-
-// db.once((resolve)=>{
-//     console.log("connected.....",resolve);
-// })
-
-
-
-// app.listen(3000,()=>{
-//      console.log("server is running on 3000");
-// })
-
-// then((resolve)=>{
-//     console.log("connected successfully.......to MongoDB",resolve);
-//     app.listen(3000,()=>{
-//         console.log('Server is running on 3000 port....');
-//   })}
-// ).catch((reject)=>{
-//       console.log("reject : ",reject)
-// })
        
    
 

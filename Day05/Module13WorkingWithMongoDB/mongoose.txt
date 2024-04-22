@@ -1,0 +1,38 @@
+/*
+   mongoose is ODM // object Document mappping library
+
+   // same to ORM
+
+   // SCHEMA models
+
+   // create instance
+
+   // queries with helper liberary
+
+*/
+
+// other way of database connection
+// const db = mongoose.connection;
+
+// db.on((reject)=>{
+//      console.log("error ",reject);
+// })
+
+// db.once((resolve)=>{
+//     console.log("connected.....",resolve);
+// })
+
+
+
+// app.listen(3000,()=>{
+//      console.log("server is running on 3000");
+// })
+
+// then((resolve)=>{
+//     console.log("connected successfully.......to MongoDB",resolve);
+//     app.listen(3000,()=>{
+//         console.log('Server is running on 3000 port....');
+//   })}
+// ).catch((reject)=>{
+//       console.log("reject : ",reject)
+// })
