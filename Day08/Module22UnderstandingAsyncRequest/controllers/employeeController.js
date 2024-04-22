@@ -1,6 +1,6 @@
 const Employee = require('../models/employeeModel');
 
-// Async request we can get all the data from database it is non blocking code
+
 exports.getAllEmployeeData = async (req,res,next)=>{
        
       try {
