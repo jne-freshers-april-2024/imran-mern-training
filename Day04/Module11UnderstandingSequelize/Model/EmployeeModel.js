@@ -1,15 +1,7 @@
-const {Sequelize,DataTypes} = require('sequelize');
-
 const sequelize = require('./DatabseSequelize');
-
+const Manager = require('./managerModel');
 const Employee = sequelize.define('employee',
 {
-//    id: {
-//      type:DataTypes.INTEGER,
-//      autoIncreament : true,
-//      //allowNull : false,
-//      primaryKey : true
-//     },
     name:{
        type:DataTypes.STRING 
     },
@@ -20,5 +12,12 @@ const Employee = sequelize.define('employee',
         type:DataTypes.STRING
     }
 });
+
+Employee.belongsTo(Manager, {
+    constraints: true,
+    onDelete: 'CASCADE'
+  });
+
+Manager.hasMany(Employee);
 
 module.exports = Employee;

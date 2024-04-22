@@ -1,0 +1,9 @@
+// ORM libriry in nodejs // it provide abstration to access data in databases
+
+// const user = User.build();
+// User.findAll();
+// User.hasMany(employee);
+
+// sequelize sync methode excute/create all the tables at single time
+// worked on based ORM model
+// facing issue regaring of sequelize sync method {force:false}
