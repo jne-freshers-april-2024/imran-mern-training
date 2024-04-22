@@ -1,0 +1,14 @@
+// Styled Components
+// Conditional and Dynamic stype
+// Styled Components 
+// CSS SetUp
+
+// Dynami state style   
+   [ variable , setVaraible ] = useState(true);
+
+   style = {{color : !variable ? 'red':'black'}}
+
+
+// Default tagged template
+// style-components
+// const Button = stypled.button.``;

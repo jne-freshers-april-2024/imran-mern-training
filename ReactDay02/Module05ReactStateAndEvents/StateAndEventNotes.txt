@@ -1,0 +1,11 @@
+/*
+  state  manipulate 
+  // onProps  requires function - to excute to excute events
+  //  elemets aceept events 
+  // onClick onChange onSubmit
+  
+
+  // vertual Dom only changes done 
+  // state changes component re excucated again
+  // event.target.value -- current input values in inputbox
+*/
