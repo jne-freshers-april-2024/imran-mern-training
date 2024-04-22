@@ -1,0 +1,18 @@
+/*
+// List and Conditional Content
+
+  Conditional redering 
+  Dynamic rendering based on condition
+  conditional syntax
+
+  {condition ? (code):()}
+  {props.Array.length === 0 ? (<p>No Element found</p>):(props.Array.map((ele,index)=>{
+     key={index}
+     name = {ele.name}
+  }))}
+
+
+  instead of ternary operater we can use &&
+  if before && then render fisrt part otherwise second part render
+
+*/
