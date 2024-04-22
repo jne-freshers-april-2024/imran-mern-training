@@ -5,18 +5,10 @@ const {validationResult} = require('express-validator');
 const {transporter,sendMail} = require('../sendEmails');
 
 
-// const nodemailer = require('nodemailer');
-// const sendGridTransport = require('nodemailer-sendgrid-transport');
-// const transport = nodemailer.createTransport(sendGridTransport({
-//     auth:{
-//         api_user: "",
-//         api_key:''
-//         // settings - api keys
-//     }
-// }));
+
 
 const employeeRegisterPage =(req,res,next)=>{
-    // console.log(req.get('Cookie').split('=')[1]);
+    
      res.send(
     `<form class='' action='/employee/addEmployee' method='post' novalidate>
      <div class=''>
@@ -46,7 +38,7 @@ const employeeRegisterPage =(req,res,next)=>{
 
 
 const employeeloginPage =(req,res,next)=>{
-    // console.log(req.get('Cookie').split('=')[1]);
+  
      res.send(
     `<form class='' action='/employee/validateEmployee' method='post'>
      <div class=''>
@@ -63,10 +55,7 @@ const employeeloginPage =(req,res,next)=>{
 }
 
 const addEmployee = (req,res,next)=>{
-    const u = req.body;
-    console.log(u);
-
-     // validation using middleware 
+     const u = req.body;
      const error = validationResult(req);
      if(!error.isEmpty()){
          return res.status(422).render('/employee/addEmployee');
@@ -74,11 +63,9 @@ const addEmployee = (req,res,next)=>{
 
     Employee.findOne({email:u.email})
     .then((employeeData)=>{
-        //console.log("employeeData ",employeeData)
         if(employeeData){
             res.redirect('/employee/register');
         }else{
-            // 12 denotes no of level it can be hashed return promise
          return   bcrypt.hash(u.password,12)
          .then((hashPassword)=>{
             const employee = new Employee({
@@ -92,72 +79,48 @@ const addEmployee = (req,res,next)=>{
             .then((resolve)=>{
                 res.redirect('/employee/login');
             }).catch((reject)=>{
-                   res.json({
-                     "message":"User is not added..."
-                   })
+                const err = new CustomeError('Employee Not Created',500);
+                next(err);
             })
         }); 
           
         }
     }).catch((err)=>{
-          res.send('error in finding employee')
+        const err = new CustomeError('Employee Not Found ',404);
+        next(err);
     })
    
 }
 
 const validateEmployee = (req,res,next)=>{
      const employee = req.body;
-     console.log(employee);
      Employee.findOne({email:employee.email})
      .then((e)=>{
               if(!e){
-                console.log("e",e);
                 return res.redirect('/employee/login')
               }
               bcrypt.compare(employee.password,e.password).then((match)=>{
                      if(match){
-                        console.log("password mathches....")
                          req.session.isLoggedIn = true;
                          req.session.employee = e;
                          return req.session.save(err=>{
-                            console.log(err);
-                            // transport.sendMail({
-                            //     to:employee.email,
-                            //     from:"imranbagwan86986@gmail.com",
-                            //     subject:"successfully singed up",
-                            //     html: `<h1>you singup successfully</h1>`
-                            // })
                             res.send('employee login successfully');
                          })
                      }
                          res.redirect('/employee/login');
                      
               }).catch((err)=>{
-                console.log("inside catch 9....");
                 return res.redirect('/employee/login');
               })
      }).catch((error)=>{
-        console.log('inside catch...10');
          res.redirect('/employee/login');
      })
 }
 
-const allData = (req,res,next)=>{
-    //  if(req.session.isLoggedIn)
-    //     res.send('Protected routes');
-    //  else{
-    //     console.log('used is not logged in');
-    //     res.redirect('/employee/login')
-    //  }
-
-        res.send('Protected routes');
-       
-    }
 
 
-// Rest Password 
+
 const resetPasswordPage =(req,res,next)=>{
-    // console.log(req.get('Cookie').split('=')[1]);
      res.send(
     `<form class='' action='/employee/resetpassword' method='post'>
      <div class=''>
@@ -170,9 +133,7 @@ const resetPasswordPage =(req,res,next)=>{
 }
 
 const getPasswordPage =(req,res,next)=>{
-    // console.log(req.get('Cookie').split('=')[1]);
     const token = req.params.token;
-    console.log("token :",token);
     Employee.findOne({resetToken:token, resetExperation:{$gt: Date.now()}}).then(employee=>{
         console.log("employee find ",employee);
         res.send(
@@ -186,7 +147,8 @@ const getPasswordPage =(req,res,next)=>{
              <button class='btn' type='submit'>Submit Password</button>
           </form>`)
     }).catch((error)=>{
-          console.log("error",error);
+        const err = new CustomeError('Employee Not Found',404);
+        next(err);
     })
    
 
@@ -198,7 +160,6 @@ const resetpassword = (req,res,next)=>{
              res.redirect('/employee/resetpassword');
          }
          const token = buffer.toString('hex');
-         console.log("token : ",token);
          Employee.findOne({email:req.body.email}).then((employee)=>{
               if(!employee){
                  res.redirect('/employee/resetpassword/page');
@@ -207,7 +168,6 @@ const resetpassword = (req,res,next)=>{
               employee.resetExperation = Date.now() + 3600000;
               return employee.save();
          }).then((employee)=>{
-            //res.redirect(`/employee/data`);
             res.send('check your email for password reset');
             const nodeMailer = {
                 to:req.body.email,
@@ -218,7 +178,8 @@ const resetpassword = (req,res,next)=>{
             }
              sendMail(transporter,nodeMailer);
          }).catch((err)=>{
-             console.log(err);
+            const err = new CustomeError('Employee Not Found',404);
+            next(err);
          })
       })
 }
@@ -234,7 +195,6 @@ const setPassword =(req,res,next)=>{
 
       Employee.findOne({resetToken:token}).
       then(employee=>{
-          
            resetEmployee = employee;
            console.log("resetEmployee :",resetEmployee);
            return bcrypt.hash(newPassword,12);
@@ -246,7 +206,8 @@ const setPassword =(req,res,next)=>{
       }).then(employee=>{
          res.redirect('/employee/login');
       }).catch((error)=>{
-         console.log("error : ",error);
+        const err = new CustomeError('Employee Not Found',404);
+        next(err);
       })
 }
 
@@ -257,7 +218,6 @@ module.exports ={
      addEmployee,
      employeeloginPage,
      validateEmployee,
-     allData,
      resetPasswordPage,
      resetpassword,
      getPasswordPage,

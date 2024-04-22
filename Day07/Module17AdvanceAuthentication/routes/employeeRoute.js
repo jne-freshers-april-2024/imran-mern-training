@@ -10,8 +10,6 @@ routes.post('/addEmployee',employeeController.addEmployee);
 routes.get('/login',employeeController.employeeloginPage);
 routes.post('/validateEmployee',employeeController.validateEmployee);
 
-routes.get('/data',isAuth, employeeController.allData);
-
 
 routes.get('/resetpassword/page',employeeController.resetPasswordPage);
 routes.post('/resetpassword',employeeController.resetpassword);

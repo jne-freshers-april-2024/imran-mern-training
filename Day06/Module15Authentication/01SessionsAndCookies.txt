@@ -21,3 +21,10 @@
 // session stored on server
 // cookies are stroed on client browser
 
+
+res.cookie('newCookie','seted',{
+    // maxAge :10000,
+    // secure:true,
+    // httpOnly:true,
+    // expire:new Date('26 july 2021')
+});
