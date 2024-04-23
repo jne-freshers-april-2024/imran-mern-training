@@ -12,33 +12,41 @@ const MainInvestment = () => {
   };
 
   const yearlyData = [];
-  
-  if(userInput){
-    let currentSavings = userInput['currentsaving'];
-    const yearlyContribution = userInput['yearlycontribution'];
-    const expectedReturn = userInput['expectedReturn'] / 100;
-    const duration = userInput['duration'];
+
+  if (userInput) {
+    let currentSavings = userInput["currentsaving"];
+    const yearlyContribution = userInput["yearlycontribution"];
+    const expectedReturn = userInput["expectedReturn"] / 100;
+    const duration = userInput["duration"];
 
     for (let i = 0; i < duration; i++) {
-        const yearlyInterest = currentSavings * expectedReturn;
-        currentSavings += yearlyInterest + yearlyContribution;
-        yearlyData.push({
-          year: i + 1,
-          yearlyInterest: yearlyInterest,
-          savingsEndOfYear: currentSavings,
-          yearlyContribution: yearlyContribution,
-        });
-      }
+      const yearlyInterest = currentSavings * expectedReturn;
+      currentSavings += yearlyInterest + yearlyContribution;
+      yearlyData.push({
+        year: i + 1,
+        yearlyInterest: yearlyInterest,
+        savingsEndOfYear: currentSavings,
+        yearlyContribution: yearlyContribution,
+      });
+    }
   }
- 
+
   return (
     <div>
       <HeaderInvestmentCal />
       <InvestmentForm calculateData={calculateHandler} />
-      {!userInput &&  <p style={{textAlign:'center'}}>Investment not calculated yet!</p>}
-      {userInput &&  <InvestmentTable data={yearlyData} intialInvestment={userInput['currentsaving']}/>}
+      {!userInput && (
+        <p style={{ textAlign: "center" }}>Investment not calculated yet!</p>
+      )}
+      {userInput && (
+        <InvestmentTable
+          data={yearlyData}
+          intialInvestment={userInput["currentsaving"]}
+        />
+      )}
     </div>
   );
 };
 
 export default MainInvestment;
+

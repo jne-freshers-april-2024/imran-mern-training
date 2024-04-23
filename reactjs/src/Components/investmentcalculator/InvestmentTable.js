@@ -47,3 +47,4 @@ const InvestmentForm = (props) => {
 };
 
 export default InvestmentForm;
+
