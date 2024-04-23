@@ -3,6 +3,7 @@ import HeaderInvestmentCal from "./HeaderInvestmentCal";
 import InvestmentForm from "./InvestmentForm";
 import InvestmentTable from "./InvestmentTable";
 import { useState } from "react";
+import Wrapper from "../Helpers/Wrapper";
 
 const MainInvestment = () => {
   const [userInput, setUserInput] = useState(null);
@@ -32,7 +33,7 @@ const MainInvestment = () => {
   }
 
   return (
-    <div>
+    <Wrapper>
       <HeaderInvestmentCal />
       <InvestmentForm calculateData={calculateHandler} />
       {!userInput && (
@@ -44,7 +45,7 @@ const MainInvestment = () => {
           intialInvestment={userInput["currentsaving"]}
         />
       )}
-    </div>
+    </Wrapper>
   );
 };
 

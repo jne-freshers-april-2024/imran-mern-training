@@ -1,0 +1,27 @@
+Fragments portals and ref   
+
+
+jsx limitation
+one another jsx we cant write
+only one root jsx we can write
+
+only one thing we can return js
+
+wrap in single element
+
+Array of jsx we can written but we get warning need key wrap it
+
+
+
+React Fragment - it is we need not to add unnessary html elemets
+
+------React Portals----
+
+overlay on entire page above all page elemet like <div> code
+
+react-dom for portal 
+use react frature to web browser
+
+// ref to HTML element 
+containt current property - actual dom node 
+ref.current.value

@@ -6,12 +6,12 @@ import MainInvestment from './Components/investmentcalculator/MainInvestment';
 const App = () => {
   
     return (
-     <div>
-        <CourseForm/>
-     </div>
     //  <div>
-    //     <MainInvestment/>
-    // </div>
+    //     <CourseForm/>
+    //  </div>
+     <div>
+        <MainInvestment/>
+    </div>
 
     // <div>
 
