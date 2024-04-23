@@ -3,22 +3,36 @@ import { useState } from "react";
 import DisplyCourseList from "./DisplyCourseList";
 import "./CourseForm.css";
 import Card from "./Card";
+import ErrorHandler from "./ErrorHander";
+
 const CourseForm = () => {
   const [course, setCourse] = useState("");
   const [courseData, setCourseData] = useState([]);
+  const [error , setError] = useState(null);
 
   const onaddCourse = (event) => {
     event.preventDefault();
-    setCourseData([...courseData, course]);
-    setCourse("");
+    if(course.trim().length === 0){
+        setError({
+            title:"Error Ocurred",
+            message:"Enter course name(course name enter please"
+        })
+    }else{
+      setCourseData([...courseData, course]);
+      setCourse("");
+    }
+   
   };
   const onCourseNameChange = (event) => {
     setCourse(event.target.value);
   };
-
+  
+  const onErrorHandler = ()=>{
+    setError(null);
+  }
   return (
     <div>
-      <Card>
+     {error && <ErrorHandler onConform={onErrorHandler} title={error.title} message={error.message} />}  
       <form className="courseForm" onSubmit={onaddCourse}>
         <div className="courseDiv">
           <label className="courseLable" htmlFor="coursename">
@@ -38,10 +52,12 @@ const CourseForm = () => {
           Add Course
         </button>
       </form>
-      </Card>
+
       <DisplyCourseList courses={courseData} />
     </div>
   );
 };
 
 export default CourseForm;
+
+
