@@ -1,0 +1,8 @@
+react - components - reactDom - interface to web 
+
+props - to pass data to other component parent to child 
+contex - component wise data can we use 
+state - internal data
+
+
+Re-evaluting component re-rendering differ
