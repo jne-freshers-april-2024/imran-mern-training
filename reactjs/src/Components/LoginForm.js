@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-
+import AuthContext from "../Context/authContext";
 const Login = (props) => {
   const [formData, setFormData] = useState({
     name: "",
@@ -29,7 +29,7 @@ const Login = (props) => {
   };
 
   return (
-    <div>
+    <AuthContext.Provider>
       <form onSubmit={onSubmitHandler}>
         <div>
           <label htmlFor="name">Name</label>
@@ -53,7 +53,7 @@ const Login = (props) => {
         </div>
         <button>Submit</button>
       </form>
-    </div>
+      </AuthContext.Provider>
   );
 };
 

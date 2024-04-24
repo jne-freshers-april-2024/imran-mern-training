@@ -5,8 +5,8 @@ import UseReducer from './Components/UseReducer';
 const App = ()=> {
    return (
       <div>
-          {/* <Login/> */}
-          <UseReducer/>
+          <Login/>
+          {/* <UseReducer/> */}
       </div>
     );
   }
