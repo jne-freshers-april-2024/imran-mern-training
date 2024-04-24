@@ -1,0 +1,38 @@
+Working with side effects
+
+Complex state management using useReducer 
+
+Render UI when needed and then re-render UI when state change
+
+jsxcode - dom  manage state props 
+user Event - re-evaluate components 
+         
+         Function excute when Dependencies change
+useEffect(()=>{},[Dependencies])
+        if dependencies change only can excute
+
+        localstorage.setItem('isLoggedIn','1');
+
+     const loginData = localstorage.getItem('isLoggedIn');
+
+     localstorage.removeItem('isLoggedIn');
+
+     event.target.value.includes('@') && event.target.value.trim()>6
+
+     Debouncing - to pouse untill user stop typing
+
+     return ()=>{console.log('cleanup')} cleanup function before next side effect function
+
+     clearTimeout()
+
+     // useEffect work as component did mount
+     every state change first fetch the data
+
+
+     // useReduser
+
+     Complex state management 
+
+     it is the updated version of useState(); -- powerful state management 
+
+     const [updState, upFunction] = useReducer[reducerFunction]
