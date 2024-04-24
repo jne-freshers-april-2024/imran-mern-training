@@ -35,4 +35,7 @@ useEffect(()=>{},[Dependencies])
 
      it is the updated version of useState(); -- powerful state management 
 
-     const [updState, upFunction] = useReducer[reducerFunction]
+     const [updState, upFunction] = useReducer[reducerFunction , intSate ,intFun]
+
+
+     reducer function can be write outside of components

@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import Login from './Components/LoginForm';
-class App extends Component {
-  render() {
-    return (
+import UseReducer from './Components/UseReducer';
+const App = ()=> {
+   return (
       <div>
-          <Login/>
+          {/* <Login/> */}
+          <UseReducer/>
       </div>
     );
   }
-}
+
 
 export default App;
