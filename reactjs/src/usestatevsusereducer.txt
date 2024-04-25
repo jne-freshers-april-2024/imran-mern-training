@@ -1,0 +1,8 @@
+useState -- main state management tool
+            we can manage indendent state 
+            easy to use and less field to manage state 
+            useful for few kind of updated
+
+useReducer -- more powerful state managemet 
+              related piese of data
+              case -- action and moreComplex state managemnt

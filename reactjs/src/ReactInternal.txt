@@ -1,0 +1,16 @@
+react - components - reactDom - interface to web 
+
+props - to pass data to other component parent to child 
+contex - component wise data can we use 
+state - internal data
+
+
+Re-evaluting component re-rendering differ
+
+if parent componets state change state then all its child components re-evaluate 
+
+react   React.memo() - to avoid re-rendering of react child components 
+        tells react props get and change the props value then only props change render
+
+useCallback to memories function
+useMemo to memories data out state of variable

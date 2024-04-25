@@ -1,0 +1,9 @@
+swapi.dev for access api data
+
+Axios ==>
+Third-Party Library: axios is a popular third-party library for making HTTP requests.
+Automatic JSON Parsing: axios automatically parses JSON responses.
+
+fetch ==>
+Native Browser API: fetch is a built-in browser API for making HTTP requests.
+we need to manually parse the response using methods like response.json() or response.text().

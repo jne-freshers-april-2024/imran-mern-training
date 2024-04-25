@@ -1,0 +1,17 @@
+constect api
+
+// state 
+react context - component wise state storage and we can directly access in any componets 
+it is alternative of state hook we do not need lift the state updated
+
+// createContex 
+// provider value
+// listen 
+manage state and function that can change state
+
+// props is imponents - redux for state management
+
+// Hooks - rule - function start use 
+    react function we can use only - 
+    rule - use only top level 
+    
