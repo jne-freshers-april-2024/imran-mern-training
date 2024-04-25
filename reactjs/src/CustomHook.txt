@@ -1,0 +1,10 @@
+Custome Hooks its just regulare function like useState() useEffect()
+
+re-using logic 
+
+name start with 'use'
+
+custom hooks provide a flexible and reusable way to encapsulate stateful logic in React applications. 
+They promote code reuse, modularity, and maintainability by allowing you to abstract complex behavior 
+into reusable units that can be shared across different components and tested independently.
+ Custom hooks are a powerful tool for managing state and side effects in a clean and modular way.

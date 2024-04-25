@@ -1,0 +1,29 @@
+// conditional rendering using && operator , ternary operator , if statement
+
+Error Handling  404--403--500--200--201
+202-Accepted
+403-Forbbiden
+404-Not Found
+201-Created
+200-Ok
+401-UnAuthorise
+500-InternalServer Error
+502-BadRequest
+503-Servies-Unavalible
+504-Request-TimeOut
+
+Error Handling using conditional rendering [Error,setError] = useState(false);
+
+To immediatly fetch data we can use useEffect()
+
+firebase - database for post request /movies.json
+
+JSON.stringify(take array or object to convert into json);
+
+fetch("URL",{
+    method:'POST',
+    body:JSON.stringify(data to send)
+    header:{
+        'Content-Type':'application/json'
+    }
+})
