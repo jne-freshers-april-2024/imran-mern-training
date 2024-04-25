@@ -6,16 +6,25 @@ const Movies = () => {
   const [moviesData, setMoviesData] = useState([]);
 
   useEffect(()=>{
+    console.log("useeffect");
     const getAllMoviesData = async () => {
-        const data = await fetch("https://hub.dummyapis.com/employee?noofRecords=10&idStarts=1001");
-        const finalData = await data.json();
-        setMoviesData(finalData);
+        try{
+          const data = await fetch("https://dummyapi.online/api/movies");
+          if (!data.ok) {
+            throw new Error("Failed to fetch users");
+          }
+          const finalData = await data.json();
+          setMoviesData(finalData);
+        }catch(error){
+           console.log("Error to fetch api",error);
+        }
       };
+      getAllMoviesData();
   },[]);
  
   return (
     <div className="app">
-      <h1> Movies Data </h1>
+      <h1 style={{textAlign:'center'}}> Movies Data </h1>
       <MoviesList data={moviesData} />
     </div>
   );
