@@ -1,0 +1,8 @@
+onSubmitHandler = default browser behavior that send http requset to server on submit 
+form
+   we use event.preventDefault(); -- not for restart page reloaded 
+
+   useRef() -- 
+   listen events -- state -- loging after every key strok
+
+   validation in front end is good for user experience
