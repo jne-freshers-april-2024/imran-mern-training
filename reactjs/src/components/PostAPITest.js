@@ -52,8 +52,8 @@ const PostAPITest = () => {
     <div className="div">
       <form onSubmit={onSubmitHandler}>
         <div>
-          <label htmlFor="name">Name</label>
-          <input
+          <label className="lable" htmlFor="name">Name</label>
+          <input className="input"
             id="name"
             value={employeeData.name}
             name="name"
@@ -61,8 +61,8 @@ const PostAPITest = () => {
           ></input>
         </div>
         <div>
-          <label htmlFor="company">Company</label>
-          <input
+          <label className="lable" htmlFor="company">Company</label>
+          <input className="input"
             id="company"
             value={employeeData.company}
             name="company"
@@ -70,15 +70,15 @@ const PostAPITest = () => {
           ></input>
         </div>
         <div>
-          <label htmlFor="location">location</label>
-          <input
+          <label className="lable" htmlFor="location">location</label>
+          <input className="input"
             id="location"
             value={employeeData.location}
             name="location"
             onChange={onChangeField}
           ></input>
         </div>
-        <button style={{ padding: "0.23%" }} type="submit">
+        <button className="button" style={{ padding: "0.23%" }} type="submit">
           Submit Data
         </button>
       </form>

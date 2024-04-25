@@ -1,0 +1,5 @@
+CUstome Hooks its just regulare function like useState() useEffect()
+
+re-using logic 
+
+name start with 'use'
