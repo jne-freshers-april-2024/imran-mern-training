@@ -1,0 +1,17 @@
+//   const [name, setName] = useState("");
+//   const [touched, settouched] = useState(false);
+
+ const enteredNameValidate = name.trim() !== "";
+  const indicate = !enteredNameValidate && touched;
+
+const onChangeName = (event) => {
+    setName(event.target.value);
+    settouched(true);
+    console.log(event.target.value);
+  };
+
+  const onBlurInput = () => {
+    settouched(true);
+  };
+
+  formik 
