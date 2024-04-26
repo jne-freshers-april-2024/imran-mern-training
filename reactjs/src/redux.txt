@@ -1,0 +1,52 @@
+redux-toolkit simplify to use of redux
+
+state management system
+local state - inside component
+cross-component state - drilling with props
+
+app-wise state // authentication
+
+contextAPI - React context  =- nested jsx performance 
+            we can use single context but it can be a complex
+
+redux  -- central data store --(state) -- component
+  1) Subscription
+
+  reducer function - mutate store data  
+
+   component --- dispatch-- action -- forword to reducer function
+
+*) Basic step for redux how to use it
+
+ import redux)  const redux = require('redux');
+
+ reducer function define)  const  counterReducer=(state=0,action)=>{
+                               if(action.type === 'increment'){
+                                   
+                                    state.counter + 1;
+                                
+                               }
+                                if(action.type === 'decrement'){
+                                   state.counter - 1;
+                                  
+                               }
+                               return {
+                                    counter:state.counter;
+                                  }
+                           }  
+
+                       how the function done
+   const store = redux.creatStore(counterReducer)
+
+   console.log(store.getState());
+
+   const counterSubsriber = () =>{
+       const lastestState = store.getState();
+       console.log(lastestState);
+   }
+
+   store.subscriber(counterSubsriber);
+
+   store.dispatch({type:'increment'});
+   store.dispatch({type:'decrement'});
+   

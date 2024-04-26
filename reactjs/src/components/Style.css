@@ -1,0 +1,23 @@
+.div{
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.35);
+    margin: 5px;
+    padding: 10px;
+    position: relative;
+    background-color: beige; 
+}
+
+.invalid{
+    border: 1px solid red;
+    border-color: rgb(230, 146, 160);
+}
+
+.valid{
+    border: 1px solid rgb(216, 240, 180);
+    border-color: rgb(165, 236, 243);
+}
+
+.form{
+    margin-bottom: 1rem;
+}
