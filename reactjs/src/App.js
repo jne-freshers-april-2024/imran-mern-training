@@ -1,6 +1,5 @@
 import React from "react";
 import NameForm from "./components/NameForm";
-
 const App = () => {
    
   return (
@@ -11,4 +10,5 @@ const App = () => {
 };
 
 export default App;
+
 
