@@ -1,0 +1,26 @@
+useSelector  = we can access the state without subscribing it this done all work in internally
+useDispatcher = return the dispatcher
+
+connect(mapStateProps,mapDispatchProps)(class componet)
+
+when we update old state the we need to overide all the state
+
+never mutate state like - state.conter++;
+
+only override the state and return brand new object
+
+alway copy and create new object
+
+it above all about the core redux functionality
+
+use see more easy way to do this 
+1)action identifiers - typo error
+2)managing amount of data in that bigger files
+   export const INCREMENT = 'increment'
+3)state immutability 
+
+**Redux ToolKit**
+
+
+
+

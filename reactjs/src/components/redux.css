@@ -1,0 +1,7 @@
+.div{
+    height: 300px;
+    width: 600px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 10px;
+}
