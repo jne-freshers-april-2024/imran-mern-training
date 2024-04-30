@@ -1,0 +1,82 @@
+useSelector  = we can access the state without subscribing it this done all work in internally
+useDispatcher = return the dispatcher
+
+connect(mapStateProps,mapDispatchProps)(class componet)
+
+when we update old state the we need to overide all the state
+
+never mutate state like - state.conter++;
+
+only override the state and return brand new object
+
+alway copy and create new object
+
+it above all about the core redux functionality
+
+use see more easy way to do this 
+1)action identifiers - typo error
+2)managing amount of data in that bigger files
+   export const INCREMENT = 'increment'
+3)state immutability 
+
+**Redux ToolKit**
+
+createSlice  // 
+
+on need to create action identifiers seperatly createSlice do for us
+
+we can have mul slice and only one reducer(store)
+
+21) leture for second state mentain for auth
+
+// const counterReducer = (state = initialState, action) => {
+//   if (action.type === "increment") {
+//     return {
+//       counter: state.counter + 1,
+//       showCounter:state.showCounter
+//     };
+//   } else if (action.type === "decrement") {
+//     return {
+//       counter: state.counter - 1,
+//       showCounter:state.showCounter
+//     };
+//   } else if (action.type === "increase") {
+//     return {
+//       counter: state.counter + action.amount,
+//       showCounter:state.showCounter
+//     };
+//   }else if(action.type === 'toggle'){
+//       return{
+//         counter:state.counter,
+//         showCounter:!state.showCounter
+//       }
+//   }
+
+//   return state;
+// };
+
+// const store = createStore(counterReducer);
+
+
+
+const initialAuth = {
+     isLogin : false,
+};
+const authSlice = createSlice({
+      name:'login',
+      initialAuth:initialAuth,
+      reducers:{
+         login(state){
+            state.isLogin = true;
+         },
+         logout(state){
+            state.isLogin = false;
+         },
+      },
+})
+
+
+
+
+
+
